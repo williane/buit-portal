@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import {Title, Icons, ActionMenu} from 'wmarks-components';
+import {Nav, Main} from './style';
+import home from './Assets/home.png';
+import back from './Assets/back.png';
+import pageBuilder from './Assets/pageBuilder.png';
+import api from './Assets/api.png';
+import extension from './Assets/extension.jpg';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Nav backgroundColor = 'colorFirst' borderColor = 'colorSecond'>
+      <Icons src={home}/>
+      <Title color= 'colorSecond' shadowColor = 'colorBlackFourth'> Automatization Center</Title>
+      <Icons src={back}/>
+    </Nav>
+    <Main backgroundColor = 'colorThird' borderColor = 'colorFirst'>
+      <ActionMenu backgroundColor= 'colorBlackThird' shadowColor= 'colorSecond' src= {pageBuilder}  lBackgroundColor= 'colorFirst'  color= 'colorBlackFirst'  lShadowColor= 'colorSecond'  borderColor= 'colorSecond'>
+        Create Page Builder
+      </ActionMenu>
+      <ActionMenu backgroundColor= 'colorBlackThird' shadowColor= 'colorSecond' src= {api}  lBackgroundColor= 'colorFirst'  color= 'colorBlackFirst'  lShadowColor= 'colorSecond'  borderColor= 'colorSecond'>
+        Api Travel Sequence
+      </ActionMenu>
+      <ActionMenu backgroundColor= 'colorBlackThird' shadowColor= 'colorSecond' src= {extension}  lBackgroundColor= 'colorFirst'  color= 'colorBlackFirst'  lShadowColor= 'colorSecond'  borderColor= 'colorSecond'>
+        Extension Store
+      </ActionMenu>
+    </Main>
+    </>
   );
 }
 
