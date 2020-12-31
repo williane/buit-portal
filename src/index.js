@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import {Styles} from 'wmarks-components';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import AutomatizationCenter from './pages/automatization_center';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Styles/>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <BrowserRouter>
+    <Switch>
+      <Route path="/AutomatizationCenter" component={AutomatizationCenter} exact />
+      <Route component={() => (<div>Página 404</div>)} />
+    </Switch>
+  </BrowserRouter>,
+  document.getElementById('root'),
 );
