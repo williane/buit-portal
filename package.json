@@ -13,7 +13,7 @@
     "react-scripts": "^4.0.1",
     "styled-components": "^5.2.1",
     "web-vitals": "^0.2.4",
-    "wmarks-components": "^0.1.5"
+    "wmarks-components": "^0.1.6"
   },
   "scripts": {
     "start": "react-scripts start",

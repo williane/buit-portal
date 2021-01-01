@@ -1,6 +1,6 @@
 import {Title, Icons, ActionMenu} from 'wmarks-components';
 import {Styles} from 'wmarks-components';
-import {Nav, Main} from './style';
+import {Nav, Main} from './Styles/automatization_center_style';
 import home from '../Assets/home.png';
 import back from '../Assets/back.png';
 import pageBuilder from '../Assets/pageBuilder.png';
