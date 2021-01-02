@@ -1,4 +1,5 @@
-import { useHistory } from 'react-router-dom';
+import { useEffect } from "react";
+import { useHistory, useLocation  } from 'react-router-dom';
 import {Title, Icons, Button, Box} from 'wmarks-components';
 import {Styles} from 'wmarks-components';
 import {Nav, Main, TextWrapper, ButtonWrapper} from './Styles/page_builder_editor_style';
@@ -7,6 +8,12 @@ import back from '../Assets/back.png';
 
 function PageBuilderEditor(){
     const history = useHistory();
+    const location = useLocation();
+
+    useEffect(() => {
+       console.log(location.pathname); // result: '/secondpage'
+       console.log(location.state); // result: 'some_value'
+    }, [location]);
 
     return(
         <>
