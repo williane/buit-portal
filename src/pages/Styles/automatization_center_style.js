@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Section, Icons} from 'wmarks-components';
+import {Section, Icons, Title} from 'wmarks-components';
 
 export const Nav = styled(Section)`
     display:flex;
@@ -7,10 +7,21 @@ export const Nav = styled(Section)`
     align-items: center;
     padding-left: 5rem;
     padding-right: 5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 
     & > ${Icons}{
-        height: 5rem;
-        width: 5rem;
+        height: 4rem;
+        width: 4rem;
+
+        :not(:last-child) {
+            height: 3.5rem;
+            width: 3.5rem;
+        }
+    }
+
+    & > ${Title}{
+        font-size: 2.5rem;
     }
 `
 

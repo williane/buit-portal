@@ -47,6 +47,9 @@ function PageBuilderCreator(){
 
     function handleNext(event){
         event.preventDefault();
+        if(!pageBuilder.description){
+            return alert('Field name and description are required!');
+        }
 
         if(pageBuilder.commands[0]){
             return history.push({pathname:'/pageBuilderEditor', state: pageBuilder});
@@ -74,8 +77,8 @@ function PageBuilderCreator(){
         </Nav>
         <Main backgroundColor = 'colorThird' borderColor = 'colorFirst'>
             <Box backgroundColor='colorBlackFourth' shadowColor = 'colorSecond' borderRadius>
-                <Field label='Name:' onChange={handleInputName}/>
-                <Field label='Description:' onChange={handleInputDesc}/>
+                <Field label='Name:' onChange={handleInputName} required/>
+                <Field label='Description:' onChange={handleInputDesc} required/>
                 <Title color='colorBlackFirst' shadowColor='colorBlackFourth' >Actions & Commands</Title>
                 <hr />
                 <Wrapper>

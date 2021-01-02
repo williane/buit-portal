@@ -7,10 +7,21 @@ export const Nav = styled(Section)`
     align-items: center;
     padding-left: 5rem;
     padding-right: 5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 
     & > ${Icons}{
-        height: 5rem;
-        width: 5rem;
+        height: 4rem;
+        width: 4rem;
+
+        :not(:last-child) {
+            height: 3.5rem;
+            width: 3.5rem;
+        }
+    }
+
+    & > ${Title}{
+        font-size: 2.5rem;
     }
 `
 
@@ -32,8 +43,17 @@ export const Main = styled(Section)`
     }
     
     & span {
-        font-size: 2rem;
+        font-size: 1.8rem;
         margin-bottom: 0px;
+    }
+
+    & > article > label{
+        margin-bottom: 0px;  
+        
+        & input{
+            font-family: 'Fira Code', monospace;
+            font-size: 1.5rem;
+    }
     }
 
     & ${Title}{
@@ -64,6 +84,11 @@ export const Wrapper = styled.div`
 export const FieldWrapper = styled.div`
     width: 85%;
     margin-right: 2rem;
+
+    & input{
+        font-family: 'Fira Code', monospace;
+        font-size: 1.5rem;
+    }
 `
 export const ButtonWrapper = styled.div`
     width: 15%;

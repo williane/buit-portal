@@ -17,6 +17,12 @@ function PageBuilderEditor(){
        });
     }, [location]);
 
+    function handleClick(event){
+        const button = document.getElementsByName('edit');
+        button.forEach((b) => b.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+
     return(
         <>
         <Styles/>
@@ -32,7 +38,7 @@ function PageBuilderEditor(){
                 </Box>
             </TextWrapper>
             <ButtonWrapper>
-                {pageBuilder && pageBuilder.commands.map((cmd) => <Button small shadowColor='colorSecond' color='colorBlackFirst' key={cmd}>{cmd}</Button>)} 
+                {pageBuilder && pageBuilder.commands.map((cmd) => <Button small shadowColor='colorSecond' color='colorBlackFirst' key={cmd} name='edit' onClick={handleClick}>{cmd}</Button>)} 
             </ButtonWrapper>
         </Main>
         </> 
