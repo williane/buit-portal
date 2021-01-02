@@ -69,7 +69,8 @@ export const ButtonWrapper = styled.div`
     width: 15%;
 
     & > ${Button}{
-        font-size: 1.5rem;
-        margin-bottom: 1.3rem;
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+        padding: 0.9rem;
     }
 `
