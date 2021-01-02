@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory, useLocation  } from 'react-router-dom';
 import {Title, Icons, Button, Box} from 'wmarks-components';
 import {Styles} from 'wmarks-components';
@@ -9,10 +9,12 @@ import back from '../Assets/back.png';
 function PageBuilderEditor(){
     const history = useHistory();
     const location = useLocation();
+    const [pageBuilder, setPageBuilder] = useState();
 
     useEffect(() => {
-       console.log(location.pathname); // result: '/secondpage'
-       console.log(location.state); // result: 'some_value'
+       setPageBuilder({
+           ...location.state
+       });
     }, [location]);
 
     return(
@@ -30,33 +32,7 @@ function PageBuilderEditor(){
                 </Box>
             </TextWrapper>
             <ButtonWrapper>
-                <Button small shadowColor='colorSecond' color='colorBlackFirst' >
-                dhlconfgBlckSts.resource
-                </Button>
-                <Button small shadowColor='colorSecond' color='colorBlackFirst' backgroundColor='colorThird'>
-                dhlactListconfgBlckSts.list.action
-                </Button>
-                <Button small shadowColor='colorSecond' color='colorBlackFirst' >
-                dhlactEditconfgBlckSts.edit.action
-                </Button>
-                <Button small shadowColor='colorSecond' color='colorBlackFirst' >
-                dhlactAddconfgBlckSts.add.action
-                </Button>
-                <Button small shadowColor='colorSecond' color='colorBlackFirst' >
-                dhlactDeleteconfgBlckSts.delete.action
-                </Button>
-                <Button small shadowColor='colorSecond' color='colorBlackFirst' >
-                dhl_list_confgBlckSts.mcmd
-                </Button>
-                <Button small shadowColor='colorSecond' color='colorBlackFirst' >
-                dhl_edit_confgBlckSts.mcmd
-                </Button>
-                <Button small shadowColor='colorSecond' color='colorBlackFirst' >
-                dhl_add_confgBlckSts.mcmd
-                </Button>
-                <Button small shadowColor='colorSecond' color='colorBlackFirst' >
-                dhl_delete_confgBlckSts.mcmd
-                </Button>
+                {pageBuilder && pageBuilder.commands.map((cmd) => <Button small shadowColor='colorSecond' color='colorBlackFirst' key={cmd}>{cmd}</Button>)} 
             </ButtonWrapper>
         </Main>
         </> 
