@@ -45,7 +45,7 @@ export const Main = styled(Section)`
     & span {
         font-size: 1.8rem;
         margin-bottom: 0px;
-    }
+        }
 
     & > article > label{
         margin-bottom: 0px;  
@@ -53,7 +53,7 @@ export const Main = styled(Section)`
         & input{
             font-family: 'Fira Code', monospace;
             font-size: 1.5rem;
-    }
+        }
     }
 
     & ${Title}{
@@ -78,6 +78,7 @@ export const Main = styled(Section)`
 `
 export const Wrapper = styled.div`
     display: flex;
+    width: 100%;
     flex-direction: row;
 `
 

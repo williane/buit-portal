@@ -24,41 +24,8 @@ export const Nav = styled(Section)`
         font-size: 2.5rem;
     }
 `
-
 export const Main = styled(Section)`
-    display: flex; 
-    flex-wrap:wrap;
-    justify-content: space-around;
+    display:flex;  
     min-height: 80vh;
-    padding: 5rem 25rem 5rem 25rem;
-    
-
-    @media(max-width: 1336px) {
-        padding: 5rem 10rem 5rem 10rem;  
-    }
-
-    @media(max-width: 1110px) {
-        padding: 5rem 5rem 5rem 5rem;  
-    }
-
-    @media(max-width: 1020px) {
-        padding: 5rem 3rem 5rem 3rem;  
-    }
-
-    @media(max-width:900px) {
-        padding: 5rem 1rem 5rem 1rem;  
-    }
-
-    @media(max-width: 680px) {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        padding: 5rem 3rem 5rem 3rem;  
-    }
-
-    & h2{
-        font-size: 1.3rem;
-    }
-
+    justify-content: center;
 `
