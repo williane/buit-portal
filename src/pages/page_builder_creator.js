@@ -1,15 +1,13 @@
 import { useHistory } from 'react-router-dom'
 import { useState } from 'react'
-import { Title, Icons, Box, Field, Button } from 'wmarks-components'
+import NavHeader from '../components/NavHeader'
+import { Title, Box, Field, Button } from 'wmarks-components'
 import {
-  Nav,
   Main,
   FieldWrapper,
   ButtonWrapper,
   Wrapper
 } from './Styles/page_builder_creator_style'
-import home from '../Assets/home.png'
-import back from '../Assets/back.png'
 
 function PageBuilderCreator() {
   const history = useHistory()
@@ -67,7 +65,7 @@ function PageBuilderCreator() {
   function handleDelete(event) {
     // eslint-disable-next-line
     const commands = pageBuilder.commands.filter(
-      (cmd) => cmd != event.target.id
+      (cmd) => cmd !== event.target.id
     )
     setPageBuilder({
       name: pageBuilder.name,
@@ -78,17 +76,7 @@ function PageBuilderCreator() {
 
   return (
     <>
-      <Nav backgroundColor="colorFirst" borderColor="colorSecond">
-        <Icons
-          src={home}
-          onClick={() => history.push({ pathname: '/automatizationCenter' })}
-        />
-        <Title color="colorSecond" shadowColor="colorBlackFourth">
-          {' '}
-          Page Builder Creator
-        </Title>
-        <Icons src={back} onClick={() => history.goBack()} />
-      </Nav>
+      <NavHeader />
       <Main backgroundColor="colorThird" borderColor="colorFirst">
         <Box
           backgroundColor="colorBlackFourth"

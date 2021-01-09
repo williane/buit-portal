@@ -1,8 +1,7 @@
 import { useHistory } from 'react-router-dom'
-import { Title, Icons, ListActionMenu } from 'wmarks-components'
-import { Nav, Main } from './Styles/automatization_center_style'
-import home from '../Assets/home.png'
-import back from '../Assets/back.png'
+import { ListActionMenu } from 'wmarks-components'
+import NavHeader from '../components/NavHeader'
+import { Main } from './Styles/automatization_center_style'
 import pageBuilder from '../Assets/pageBuilder.png'
 import api from '../Assets/api.png'
 import extension from '../Assets/extension.jpg'
@@ -51,14 +50,7 @@ function AutomatizationCenter() {
 
   return (
     <>
-      <Nav backgroundColor="colorFirst" borderColor="colorSecond">
-        <Icons src={home} />
-        <Title color="colorSecond" shadowColor="colorBlackFourth">
-          {' '}
-          Automatization Center
-        </Title>
-        <Icons src={back} />
-      </Nav>
+      <NavHeader />
       <Main backgroundColor="colorThird" borderColor="colorFirst">
         <ListActionMenu actionMenus={actionMenus} />
       </Main>
