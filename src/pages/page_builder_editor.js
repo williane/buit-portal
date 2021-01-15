@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import NavHeader from '../components/NavHeader'
-import { Button, Box } from 'wmarks-components'
+import TextBox from '../components/TextBox'
+import { Button } from 'wmarks-components'
 import {
   Main,
   TextWrapper,
@@ -15,6 +16,7 @@ function PageBuilderEditor() {
     description: '',
     commands: []
   })
+  const [form, setForm] = useState(false)
 
   useEffect(() => {
     setPageBuilder({
@@ -26,19 +28,18 @@ function PageBuilderEditor() {
     const button = document.getElementsByName('edit')
     button.forEach((b) => b.classList.remove('active'))
     event.target.classList.add('active')
+    if (event.target.dataset.cmd.split('.')[1] === 'resource') {
+      setForm(true)
+    } else {
+      setForm(false)
+    }
   }
 
   return (
     <>
       <NavHeader />
       <Main backgroundColor="colorBlackFourth" borderColor="colorFirst">
-        <TextWrapper>
-          <Box
-            backgroundColor="colorThird"
-            borderColor="colorFirst"
-            shadowColor="colorSecond"
-          ></Box>
-        </TextWrapper>
+        <TextWrapper>{form ? <TextBox form /> : <TextBox />}</TextWrapper>
         <ButtonWrapper>
           {pageBuilder &&
             pageBuilder.commands.map((cmd) => (
@@ -48,6 +49,7 @@ function PageBuilderEditor() {
                 color="colorBlackFirst"
                 key={cmd}
                 name="edit"
+                data-cmd={cmd}
                 onClick={handleClick}
               >
                 {cmd}

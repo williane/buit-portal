@@ -12,7 +12,7 @@ function NavHeader() {
         src={home}
         onClick={() => history.push({ pathname: '/automatizationCenter' })}
       />
-      <Title color="colorSecond" shadowColor="colorBlackFourth">
+      <Title color="colorSecond" shadowColor="colorThird">
         {' '}
         Page Builder Creator
       </Title>

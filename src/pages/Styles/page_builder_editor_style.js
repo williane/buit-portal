@@ -3,9 +3,11 @@ import { Section, Button } from 'wmarks-components'
 
 export const Main = styled(Section)`
   display: flex;
-  min-height: 80vh;
+  align-items: center;
+  margin: auto;
+  min-height: 80rem;
   height: 80vh;
-  padding: 5rem 25rem 5rem 25rem;
+  padding: 5rem 5rem 5rem 5rem;
 `
 export const TextWrapper = styled.div`
   height: 100%;
@@ -14,6 +16,7 @@ export const TextWrapper = styled.div`
 export const ButtonWrapper = styled.div`
   height: 100%;
   width: 30%;
+  min-width: 40rem;
   padding-top: 1rem;
 
   & ${Button} {
