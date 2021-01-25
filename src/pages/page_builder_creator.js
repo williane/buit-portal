@@ -76,7 +76,7 @@ function PageBuilderCreator() {
 
   return (
     <>
-      <NavHeader />
+      <NavHeader>Page Builder Creator</NavHeader>
       <Main backgroundColor="colorThird" borderColor="colorFirst">
         <Box
           backgroundColor="colorBlackFourth"

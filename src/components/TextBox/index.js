@@ -4,7 +4,14 @@ import { BoxText, FieldWrapper, SelectiondWrapper } from './style'
 const optionsPk = ['true', 'false']
 const optionsType = ['string', 'int']
 
-function TextBox({ form, saveOnClick, savAllOnClick, includeOnClinck }) {
+function TextBox({
+  form,
+  saveOnClick,
+  savAllOnClick,
+  includeOnClinck,
+  value,
+  readOnly
+}) {
   return (
     <BoxText
       backgroundColor="colorThird"
@@ -45,7 +52,11 @@ function TextBox({ form, saveOnClick, savAllOnClick, includeOnClinck }) {
           </Button>
         </Section>
       )}
-      <TextArea></TextArea>
+      {readOnly ? (
+        <TextArea value={value} />
+      ) : (
+        <TextArea defaultValue={value} />
+      )}
     </BoxText>
   )
 }

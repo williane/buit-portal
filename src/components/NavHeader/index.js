@@ -4,7 +4,7 @@ import Nav from './style'
 import home from '../../Assets/home.png'
 import back from '../../Assets/back.png'
 
-function NavHeader() {
+function NavHeader({ children }) {
   const history = useHistory()
   return (
     <Nav backgroundColor="colorFirst" borderColor="colorSecond">
@@ -13,8 +13,7 @@ function NavHeader() {
         onClick={() => history.push({ pathname: '/automatizationCenter' })}
       />
       <Title color="colorSecond" shadowColor="colorThird">
-        {' '}
-        Page Builder Creator
+        {children}
       </Title>
       <Icons src={back} onClick={() => history.goBack()} />
     </Nav>

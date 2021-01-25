@@ -50,7 +50,7 @@ function AutomatizationCenter() {
 
   return (
     <>
-      <NavHeader />
+      <NavHeader>Automatization Center</NavHeader>
       <Main backgroundColor="colorThird" borderColor="colorFirst">
         <ListActionMenu actionMenus={actionMenus} />
       </Main>
