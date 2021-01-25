@@ -21,20 +21,17 @@ function PageBuilderEditor() {
   const [text, setText] = useState({})
   const [clicked, setClicked] = useState([])
   const [actualCmd, setActualCmd] = useState()
-  const [secondReload, setSecondReload] = useState(false)
   const commandText = getCommand(pageBuilder)
 
   useEffect(() => {
     setPageBuilder({
       ...location.state
     })
-    setSecondReload(true)
   }, [location])
 
   useEffect(() => {
-    secondReload && activeButton()
-    console.log('entrou no useEffect')
-  }, [secondReload])
+    pageBuilder.name && activeButton()
+  }, [pageBuilder])
 
   useEffect(() => {
     const textarea = document.querySelector('textarea')
@@ -43,10 +40,8 @@ function PageBuilderEditor() {
 
   function activeButton() {
     const button = document.getElementsByName('edit')
-    console.log('entrou no activeButton')
     button.forEach((b) => {
       if (b.getAttribute('data-cmd').split('.')[1] === 'resource') {
-        console.log('entrou no if do activeButton')
         return b.click()
       }
     })
