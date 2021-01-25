@@ -9,6 +9,7 @@ import {
   ButtonWrapper
 } from './Styles/page_builder_editor_style'
 import getCommand from '../commands'
+import { saveAs } from 'file-saver'
 
 function PageBuilderEditor() {
   const location = useLocation()
@@ -22,6 +23,7 @@ function PageBuilderEditor() {
   const [clicked, setClicked] = useState([])
   const [actualCmd, setActualCmd] = useState()
   const [propierties, setPropierties] = useState([])
+  const [save, setSave] = useState(false)
   const commandText = (cmd) => getCommand(pageBuilder, cmd, propierties)
 
   useEffect(() => {
@@ -51,6 +53,19 @@ function PageBuilderEditor() {
       }
     }
   }, [propierties, clicked])
+
+  useEffect(() => {
+    const index = clicked.length - 1
+    const command = clicked[index]
+    if (command && save) {
+      let blob = new Blob([text[command]], {
+        type: 'text/plain;charset=utf-8'
+      })
+
+      saveAs(blob, command.replace(/[.]\w*[.]/g, '.'))
+    }
+    setSave(false)
+  }, [text, save])
 
   function activeButton() {
     const button = document.getElementsByName('edit')
@@ -136,6 +151,15 @@ function PageBuilderEditor() {
     name.focus()
   }
 
+  function handleSave() {
+    const index = clicked.length - 1
+    const command = clicked[index]
+    const textarea = document.querySelector('textarea')
+
+    setText({ ...text, [command]: textarea.value })
+    setSave(true)
+  }
+
   return (
     <>
       <NavHeader>Page Builder Editor</NavHeader>
@@ -146,6 +170,7 @@ function PageBuilderEditor() {
             value={actualCmd}
             readOnly={forme}
             includeOnClinck={handleIncludeClick}
+            saveOnClick={handleSave}
           />
         </TextWrapper>
         <ButtonWrapper>
