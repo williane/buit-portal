@@ -42,7 +42,11 @@ function PageBuilderEditor() {
   useEffect(() => {
     const index = clicked.length - 1
     const command = clicked[index]
-    command && setActualCmd(getCommandText(command))
+    if (command) {
+      if (command.split('.')[1] === 'resource') {
+        setActualCmd(getCommandText(command))
+      }
+    }
   }, [propierties, clicked])
 
   function activeButton() {
@@ -127,6 +131,8 @@ function PageBuilderEditor() {
 
     name.value = null
     description.value = null
+
+    name.focus()
   }
 
   return (
