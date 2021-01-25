@@ -21,7 +21,8 @@ function PageBuilderEditor() {
   const [text, setText] = useState({})
   const [clicked, setClicked] = useState([])
   const [actualCmd, setActualCmd] = useState()
-  const commandText = getCommand(pageBuilder)
+  const [propierties, setPropierties] = useState([])
+  const commandText = (cmd) => getCommand(pageBuilder, cmd, propierties)
 
   useEffect(() => {
     setPageBuilder({
@@ -37,6 +38,12 @@ function PageBuilderEditor() {
     const textarea = document.querySelector('textarea')
     textarea.value = actualCmd
   }, [actualCmd])
+
+  useEffect(() => {
+    const index = clicked.length - 1
+    const command = clicked[index]
+    command && setActualCmd(getCommandText(command))
+  }, [propierties, clicked])
 
   function activeButton() {
     const button = document.getElementsByName('edit')
@@ -74,9 +81,16 @@ function PageBuilderEditor() {
       command.split('.')[1] === 'resource' ||
       command.split('.')[1] === 'mcmd'
     ) {
-      return commandText[command.split('.')[1]]
+      return commandText(command)[command.split('.')[1]].replace(
+        new RegExp([','], 'g'),
+        ' '
+      )
     } else {
-      return commandText[command.split('.')[1] + '_' + command.split('.')[2]]
+      return commandText(command)[
+        command.split('.')[1] +
+          '_' +
+          command.split('.')[2].replace(new RegExp([','], 'g'), ' ')
+      ]
     }
   }
 
@@ -95,12 +109,37 @@ function PageBuilderEditor() {
       : setActualCmd(getCommandText(command))
   }
 
+  function handleIncludeClick() {
+    const name = document.querySelectorAll('input')[0]
+    const description = document.querySelectorAll('input')[1]
+    const pk = document.querySelectorAll('select')[0]
+    const type = document.querySelectorAll('select')[1]
+
+    setPropierties([
+      ...propierties,
+      {
+        name: name.value,
+        description: description.value,
+        pk: pk.value,
+        type: type.value
+      }
+    ])
+
+    name.value = null
+    description.value = null
+  }
+
   return (
     <>
       <NavHeader>Page Builder Editor</NavHeader>
       <Main backgroundColor="colorBlackFourth" borderColor="colorFirst">
         <TextWrapper>
-          <TextBox form={forme} value={actualCmd} readOnly={forme} />
+          <TextBox
+            form={forme}
+            value={actualCmd}
+            readOnly={forme}
+            includeOnClinck={handleIncludeClick}
+          />
         </TextWrapper>
         <ButtonWrapper>
           {pageBuilder &&
