@@ -24,6 +24,7 @@ function PageBuilderEditor() {
   const [actualCmd, setActualCmd] = useState()
   const [propierties, setPropierties] = useState([])
   const [save, setSave] = useState(false)
+  const [saveAll, setSaveAll] = useState(false)
   const commandText = (cmd) => getCommand(pageBuilder, cmd, propierties)
 
   useEffect(() => {
@@ -58,14 +59,31 @@ function PageBuilderEditor() {
     const index = clicked.length - 1
     const command = clicked[index]
     if (command && save) {
-      let blob = new Blob([text[command]], {
-        type: 'text/plain;charset=utf-8'
-      })
-
-      saveAs(blob, command.replace(/[.]\w*[.]/g, '.'))
+      saveFiler(text[command], command)
     }
     setSave(false)
-  }, [text, save])
+  }, [text, save, clicked])
+
+  useEffect(() => {
+    if (saveAll) {
+      pageBuilder.commands.map((cmd) => {
+        if (text[cmd]) {
+          saveFiler(text[cmd], cmd)
+        } else {
+          saveFiler(getCommandText(cmd), cmd)
+        }
+      })
+    }
+    setSaveAll(false)
+  }, [text, saveAll, pageBuilder])
+
+  function saveFiler(text, cmd) {
+    let blob = new Blob([text], {
+      type: 'text/plain;charset=utf-8'
+    })
+
+    saveAs(blob, cmd.replace(/[.]\w*[.]/g, '.'))
+  }
 
   function activeButton() {
     const button = document.getElementsByName('edit')
@@ -151,13 +169,22 @@ function PageBuilderEditor() {
     name.focus()
   }
 
-  function handleSave() {
+  function saveActualTextArea() {
     const index = clicked.length - 1
     const command = clicked[index]
     const textarea = document.querySelector('textarea')
 
     setText({ ...text, [command]: textarea.value })
+  }
+
+  function handleSave() {
+    saveActualTextArea()
     setSave(true)
+  }
+
+  function handleSaveAll() {
+    saveActualTextArea()
+    setSaveAll(true)
   }
 
   return (
@@ -171,6 +198,7 @@ function PageBuilderEditor() {
             readOnly={forme}
             includeOnClinck={handleIncludeClick}
             saveOnClick={handleSave}
+            savAllOnClick={handleSaveAll}
           />
         </TextWrapper>
         <ButtonWrapper>
