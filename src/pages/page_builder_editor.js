@@ -43,7 +43,10 @@ function PageBuilderEditor() {
     const index = clicked.length - 1
     const command = clicked[index]
     if (command) {
-      if (command.split('.')[1] === 'resource') {
+      if (
+        command.split('.')[1] === 'resource' ||
+        command.split('.')[2] === 'action'
+      ) {
         setActualCmd(getCommandText(command))
       }
     }
@@ -86,15 +89,13 @@ function PageBuilderEditor() {
       command.split('.')[1] === 'mcmd'
     ) {
       return commandText(command)[command.split('.')[1]].replace(
-        new RegExp([','], 'g'),
-        ' '
+        new RegExp(['>,'], 'g'),
+        '>'
       )
     } else {
       return commandText(command)[
-        command.split('.')[1] +
-          '_' +
-          command.split('.')[2].replace(new RegExp([','], 'g'), ' ')
-      ]
+        command.split('.')[1] + '_' + command.split('.')[2]
+      ].replace(new RegExp(['>,'], 'g'), '>')
     }
   }
 

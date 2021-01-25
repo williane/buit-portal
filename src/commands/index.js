@@ -6,7 +6,9 @@ function getCommand(pagebuilder, cmd, propierties) {
 <description>${pagebuilder.description}</description>
 <properties>${propierties.map(
       (p) => `
-<property name="${p.name}" pk="${p.pk}" type="${p.type}" description="${p.description}"/>`
+<property name="${p.name}" ${p.pk === 'true' ? `pk="${p.pk}"` : ''} type="${
+        p.type
+      }" description="${p.description}"/>`
     )}
 </properties>
 <actions>${pagebuilder.commands
@@ -17,11 +19,105 @@ function getCommand(pagebuilder, cmd, propierties) {
       )}
 </actions>
 </resource>`,
-    list_action: 'list action',
-    edit_action: 'edit action',
-    add_action: 'add action',
-    delete_action: 'delete action',
-    mcmd: `mcmd ${cmd}`
+    list_action: `<action>
+<id>${cmd.split('.')[0]}</id>
+<name>list ${pagebuilder.description}</name>
+<description>${pagebuilder.description}</description>
+<type>LIST</type>
+<ws>
+<method>GET</method>
+<href>/${cmd.split('.')[0]}</href>
+</ws>
+<impl>
+<command>dhl list ${pagebuilder.name}</command>
+</impl>
+<auth>
+<opt>optOpen</opt>
+</auth>
+</action>`,
+    edit_action: `<action>
+<id>${cmd.split('.')[0]}</id>
+<name>edit ${pagebuilder.description}</name>
+<description>${pagebuilder.description}</description>
+<type>EDIT</type>
+<ws>
+<method>PUT</method>
+<href>/${cmd.split('.')[0]}/{${propierties
+      .filter((p) => p.pk === 'true')
+      .map((p) => p.name)}}</href>
+</ws>
+<impl>
+<command>dhl edit ${pagebuilder.name}</command>
+<arguments>${propierties
+      .filter((p) => p.pk === 'true')
+      .map(
+        (p) => `
+<argument name="${p.name}" type="${p.type}" required="true" location="path"/>`
+      )}
+</arguments>
+</impl>
+<auth>
+<opt>optOpen</opt>
+</auth>
+</action>`,
+    add_action: `<action>
+<id>${cmd.split('.')[0]}</id>
+<name>add ${pagebuilder.description}</name>
+<description>${pagebuilder.description}</description>
+<type>ADD</type>
+<ws>
+<method>POST</method>
+<href>/${cmd.split('.')[0]}</href>
+</ws>
+<impl>
+<command>dhl add ${pagebuilder.name}</command>
+<arguments>${propierties
+      .filter((p) => p.pk === 'true')
+      .map(
+        (p) => `
+<argument name="${p.name}" type="${p.type}" required="true" location="query"/>`
+      )}
+</arguments>
+</impl>
+<auth>
+<opt>optOpen</opt>
+</auth>
+</action>`,
+    delete_action: `<action>
+<id>${cmd.split('.')[0]}</id>
+<name>delete ${pagebuilder.description}</name>
+<description>${pagebuilder.description}</description>
+<type>DELETE</type>
+<ws>
+<method>DELETE</method>
+<href>/${cmd.split('.')[0]}/{${propierties
+      .filter((p) => p.pk === 'true')
+      .map((p) => p.name)}}</href>
+</ws>
+<impl>
+<command>dhl delete ${pagebuilder.name}</command>
+<arguments>${propierties
+      .filter((p) => p.pk === 'true')
+      .map(
+        (p) => `
+<argument name="${p.name}" type="${p.type}" required="true" location="path"/>`
+      )}
+</arguments>
+</impl>
+<auth>
+<opt>optOpen</opt>
+</auth>
+</action>`,
+    mcmd: `<command>
+<name>${cmd.split('.')[0].replace(new RegExp(['_'], 'g'), ' ')}</name>
+<description>${pagebuilder.description}</description>
+<type>Local Syntax</type>
+<local-syntax>
+<![CDATA[
+
+]]>
+</local-syntax>
+</command>`
   }
 
   return command
