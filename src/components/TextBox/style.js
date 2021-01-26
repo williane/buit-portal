@@ -13,6 +13,7 @@ const hasForm = ({ form }) =>
 
     & ${Button} {
       margin-left: 1.5rem;
+      width: 10rem;
     }
 
     & ${TextArea} {
@@ -104,7 +105,7 @@ export const BoxText = styled(Box)`
 
   & ${Section} {
     display: flex;
-    gap: 1rem;
+    gap: 0.2rem;
     justify-content: flex-start;
     height: 5rem;
     padding: 0.5rem;

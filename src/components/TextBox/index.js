@@ -26,7 +26,7 @@ function TextBox({
           backgroundColor="colorSecond"
           onClick={saveOnClick}
         >
-          Salvar
+          Save
         </Button>
         <Button
           small
@@ -34,7 +34,7 @@ function TextBox({
           backgroundColor="colorSecond"
           onClick={savAllOnClick}
         >
-          Salvar todos
+          Save All
         </Button>
       </Section>
       {form && (
@@ -48,7 +48,7 @@ function TextBox({
             <Selection label="Type:" values={optionsType} vertical />
           </SelectiondWrapper>
           <Button small borderRadius onClick={includeOnClinck}>
-            Incluir
+            Add
           </Button>
         </Section>
       )}
