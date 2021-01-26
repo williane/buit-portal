@@ -1,7 +1,12 @@
 import styled from 'styled-components'
-import { Section, Icons, Title } from 'wmarks-components'
+import { Section, Icons, Title, Image } from 'wmarks-components'
 
-const Nav = styled(Section)`
+export const IconsWrapper = styled.div`
+  display: flex;
+  gap: 2rem;
+`
+
+export const Nav = styled(Section)`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,7 +15,12 @@ const Nav = styled(Section)`
   padding-top: 1rem;
   padding-bottom: 1rem;
 
-  & > ${Icons} {
+  & ${Image} {
+    width: 20rem;
+    height: 5rem;
+  }
+
+  & ${Icons} {
     height: 4rem;
     width: 4rem;
 
@@ -21,7 +31,11 @@ const Nav = styled(Section)`
   }
 
   & > ${Title} {
-    font-size: 2.5rem;
+    font-family: Delivery, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 4rem;
+    text-shadow: 0px 0.15rem 0px #fff;
+    margin-right: 10rem;
+    margin-bottom: 0;
   }
 `
-export default Nav
