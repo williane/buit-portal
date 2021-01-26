@@ -32,7 +32,9 @@ export const Main = styled(Section)`
   }
 
   & ${Title} {
-    font-size: 1.8rem;
+    font-family: Delivery, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 2.5rem;
     margin-top: 2.5rem;
     margin-bottom: 0.5rem;
     text-align: left;
