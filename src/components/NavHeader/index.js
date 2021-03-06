@@ -14,10 +14,7 @@ function NavHeader({ children }) {
         {children}
       </Title>
       <IconsWrapper>
-        <Icons
-          src={home}
-          onClick={() => history.push({ pathname: '/automatizationCenter' })}
-        />
+        <Icons src={home} onClick={() => history.push({ pathname: '/' })} />
         <Icons src={back} onClick={() => history.goBack()} />
       </IconsWrapper>
     </Nav>
